@@ -3,6 +3,7 @@ Wait on multiple :class:`threading.Event` instances.
 
 Based on code from: https://stackoverflow.com/questions/12317940/python-threading-can-i-sleep-on-two-threading-events-simultaneously/12320352#12320352
 '''
+from __future__ import absolute_import
 import threading
 
 from ._version import get_versions

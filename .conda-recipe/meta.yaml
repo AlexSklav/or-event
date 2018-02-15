@@ -14,14 +14,19 @@ package:
 
 build:
   script: python setup.py install --single-version-externally-managed --record record.txt
-  no_arch: python
+  #: .. versionadded:: 0.2.1
+  noarch: python
 
 requirements:
   build:
     - python
+    #: .. versionadded:: 0.2.1
+    - six
 
   run:
     - python
+    #: .. versionadded:: 0.2.1
+    - six
 
 test:
   imports:
