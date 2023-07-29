@@ -36,8 +36,3 @@ test:
 about:
   home: https://github.com/sci-bots/or-event
   license: BSD
-
-# source will be downloaded prior to filling in jinja templates
-# Example assumes that this folder has setup.py in it
-source:
-  git_url: ../
