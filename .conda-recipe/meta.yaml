@@ -13,20 +13,21 @@ package:
   version: {{ GIT_VERSION }}
 
 build:
+  # If this is a new build for the same version, increment the build
+  # number. If you do not include this key, it defaults to 0.
+  number: 0
   script: python setup.py install --single-version-externally-managed --record record.txt
   #: .. versionadded:: 0.2.1
   noarch: python
 
 requirements:
   build:
-    - python
-    #: .. versionadded:: 0.2.1
+    - python {{ python }}
     - six
+    - versioneer
 
   run:
-    - python
-    #: .. versionadded:: 0.2.1
-    - six
+    - python {{ python }}
 
 test:
   imports:
@@ -35,3 +36,8 @@ test:
 about:
   home: https://github.com/sci-bots/or-event
   license: BSD
+
+# source will be downloaded prior to filling in jinja templates
+# Example assumes that this folder has setup.py in it
+source:
+  git_url: ../
