@@ -6,3 +6,5 @@ graft src
 prune *.pyc
 include versioneer.py
 include src/or_event/_version.py
+exclude .DS_Store
+recursive-exclude or_event .DS_Store

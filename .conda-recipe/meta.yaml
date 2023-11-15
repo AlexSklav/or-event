@@ -3,13 +3,10 @@
 {% else %}
 {% set GIT_VERSION = GIT_DESCRIBE_TAG[1:] %}
 {% endif %}
-# source will be downloaded prior to filling in jinja templates
-# Example assumes that this folder has setup.py in it
-source:
-  git_url: ../
-
+{% set PKG_NAME = 'or-event' %}
+{% set MODULE_NAME = PKG_NAME.replace('-', '_') %}
 package:
-  name: or-event
+  name: {{ PKG_NAME }}
   version: {{ GIT_VERSION }}
 
 build:
@@ -17,22 +14,27 @@ build:
   # number. If you do not include this key, it defaults to 0.
   number: 0
   script: python setup.py install --single-version-externally-managed --record record.txt
-  #: .. versionadded:: 0.2.1
   noarch: python
 
 requirements:
   build:
-    - python {{ python }}
-    - six
+    - python >=3.8
     - versioneer
 
   run:
-    - python {{ python }}
+    - python >=3.8
 
 test:
   imports:
-    - or_event
+    - {{ MODULE_NAME }}
 
 about:
-  home: https://github.com/sci-bots/or-event
+  home: https://github.com/sci-bots/{{ PKG_NAME }}
   license: BSD
+  summary: Wait on multiple threading.Event instances
+
+# source will be downloaded prior to filling in jinja templates
+# Example assumes that this folder has setup.py in it
+source:
+#  git_url: ../
+  path: ..
